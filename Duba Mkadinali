@@ -10,9 +10,9 @@
     <variable type="" id="aaTqJ:Hk+[.Ro,giN){G">Martingle Leval</variable>
   </variables>
   <block type="trade" id="xgH69|xFn9=70w.*3Vo@" x="191" y="72">
-    <field name="MARKET_LIST">synthetic_index</field>
-    <field name="SUBMARKET_LIST">random_index</field>
-    <field name="SYMBOL_LIST">1HZ100V</field>
+    <field name="MARKET_LIST">daily_reset_indices</field>
+    <field name="SUBMARKET_LIST">daily_reset_indices</field>
+    <field name="SYMBOL_LIST">bull_market_index</field>
     <field name="TRADETYPECAT_LIST">callput</field>
     <field name="TRADETYPE_LIST">risefall</field>
     <field name="TYPE_LIST">both</field>
@@ -82,7 +82,7 @@
     </statement>
     <statement name="SUBMARKET">
       <block type="tradeOptions" id="x=V33~4Lb|(sLv`J[:Eb">
-        <field name="DURATIONTYPE_LIST">t</field>
+        <field name="DURATIONTYPE_LIST">m</field>
         <field name="CURRENCY_LIST">USD</field>
         <field name="BARRIEROFFSETTYPE_LIST">+</field>
         <field name="SECONDBARRIEROFFSETTYPE_LIST">-</field>
@@ -348,7 +348,7 @@
             </value>
             <value name="PERIOD">
               <shadow type="math_number" id="gTF.nTHOJYm_9]U]q``t">
-                <field name="NUM">3</field>
+                <field name="NUM">10</field>
               </shadow>
             </value>
           </block>
@@ -363,7 +363,7 @@
                 </value>
                 <value name="PERIOD">
                   <shadow type="math_number" id="1oq?T*O9M%@sz?6p#cmn">
-                    <field name="NUM">2</field>
+                    <field name="NUM">7</field>
                   </shadow>
                 </value>
               </block>
@@ -460,4 +460,26 @@
       </block>
     </statement>
   </block>
+  <block type="controls_if">
+  <value name="IF0">
+    <block type="logic_compare">
+      <field name="OP">LT</field>
+      <value name="A">
+        <block type="variables_get">
+          <field name="VAR">RSI</field>
+        </block>
+      </value>
+      <value name="B">
+        <block type="math_number">
+          <field name="NUM">30</field>
+        </block>
+      </value>
+    </block>
+  </value>
+  <statement name="DO0">
+    <block type="purchase">
+      <field name="PURCHASE_LIST">CALL</field>
+    </block>
+  </statement>
+</block>
 </xml>
